@@ -4,7 +4,8 @@ var db = require("./db");
 var user = require("./controllers/usercontroller");
 var game = require("./controllers/gamecontroller");
 
-db.sync();
+// db.sync(); sync() is not a function
+
 app.use(require("body-parser"));
 app.use("/api/auth", user);
 app.use(require("./middleware/validate-session"));
