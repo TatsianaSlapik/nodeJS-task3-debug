@@ -1,6 +1,5 @@
 var router = require("express").Router();
-//var Game = require('../db').import('../models/game');
-var Game = require("../models/game");
+var Game = require("../db").sequelize.import("../models/game"); // wrong no sequelize
 
 router.get("/all", (req, res) => {
   Game.findAll({ where: { owner_id: req.user.id } }).then(
@@ -110,5 +109,5 @@ router.delete("/remove/:id", (req, res) => {
   );
 });
 
-//module.exports = routers;
+//5. wrong export module.exports = routers;
 module.exports = router;

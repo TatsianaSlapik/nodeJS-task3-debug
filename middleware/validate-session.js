@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-// wrong import var User = require('sequelize').import('../models/user');
+// 8. wrong import var User = require('sequelize').import('../models/user');
 var User = require("../models/user");
 
 module.exports = function (req, res, next) {

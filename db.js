@@ -15,14 +15,16 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: "postgres",
+    logging: true,
   }
 );
-sequelize.authenticate().then(
-  function success() {
-    console.log("Connected to DB");
-  },
 
-  function fail(err) {
-    console.log(`Error: ${err}`);
-  }
-);
+const db = {};
+
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+
+db.sequelize.users = require("./models/user")(sequelize, Sequelize);
+db.sequelize.games = require("./models/game")(sequelize, Sequelize);
+
+module.exports = db;

@@ -1,17 +1,16 @@
-//var router = Router();
+//1. wrong var router = Router();
 var router = require("express").Router();
-//var bcrypt = require("bcrypt");
+//2. wrong var bcrypt = require("bcrypt");
 var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 
-//var User = require("../db").import("../models/user");
-var User = require("../models/user");
+var User = require("../db").sequelize.import("../models/user"); //wrong not sequelize
 
 router.post("/signup", (req, res) => {
   User.create({
     full_name: req.body.user.full_name,
     username: req.body.user.username,
-    passwordhash: bcrypt.hashSync(req.body.user.password, 10),
+    passwordHash: bcrypt.hashSync(req.body.user.password, 10), //passwordhash naming
     email: req.body.user.email,
   }).then(
     function signupSuccess(user) {
