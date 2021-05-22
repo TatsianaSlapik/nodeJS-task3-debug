@@ -14,6 +14,9 @@ db.sequelize
   .catch((err) => {
     console.error("Unable to connect to the database:", err);
   });
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
 app.use(express.json());
 //removed body-parser
 app.use("/api/auth", user);
