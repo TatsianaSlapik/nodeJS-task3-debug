@@ -6,15 +6,14 @@ var game = require("./controllers/gamecontroller");
 //  var bodyParser = require("body-parser");
 
 // 9. db.sync(); sync() is not a function
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
-});
-try {
-  db.sequelize.authenticate();
-  console.log("Connection has been established successfully.");
-} catch (error) {
-  console.error("Unable to connect to the database:", error);
-}
+db.sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully.");
+  })
+  .catch((err) => {
+    console.error("Unable to connect to the database:", err);
+  });
 app.use(express.json());
 //removed body-parser
 app.use("/api/auth", user);
